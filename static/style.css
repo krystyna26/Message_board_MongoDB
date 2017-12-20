@@ -1,0 +1,37 @@
+body {
+    background-image: url("message-1.jpg");
+    padding: 20px;
+ }
+
+ .title{
+    text-align:center; 
+    border-bottom: solid 1px; 
+    padding: 5px; 
+    margin: 5px; 
+    width: 800px;
+ }
+
+#text{
+    width: 800px;
+ }
+
+ p{
+    margin-bottom: 0px
+ }
+
+ h5{
+     margin: 0px;
+     margin-top: 10px;
+ }
+
+.message-loop{
+    border-bottom: solid 1px; padding: 5px; 
+    margin: 5px; 
+    width: 800px; 
+    /* border: solid 1px; */
+}
+
+.comments{
+    margin-left: 65px; 
+    /* border: 1px dotted; */
+} 

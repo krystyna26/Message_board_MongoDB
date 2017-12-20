@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="title">
+            <h1>Message Board</h1>
+        </div>
+
+        <form class="form-horizontal" action='/posts' method='post'>
+            <div class="form-group">
+                <p>Name:</p><input type='text' name='name' placeholder="Name"><br><br>
+                <p>Message:</p><textarea class="form-control" id="text" rows="3" cols="70" type="text" name="message" placeholder="Add message" ></textarea><br>
+                <input class="btn btn-default" type='submit' value='Post message' style="margin-left: 660px">
+            </div>
+        </form>
+
+        <div class="message" >
+        <% if (session.message_errors) { %>
+            <% for (const key in session.message_errors) { %>
+                <h3><%= session.message_errors[key].message %></h3>
+            <% } %>
+        <% } %>
+            <div>
+            <% for (var msg in messages_in_index) { %>
+                <div class="message-loop">
+                <h3> <%= messages_in_index[msg].name %></h3>
+                <h4><%=messages_in_index[msg].message %></h4>
+                    <div class="comments">
+                        <% for (var com of messages_in_index[msg].comments) { %>
+                            <h5> <%= com.name %></h5>
+                            <p> <%= com.text %></p>
+                        <% } %>
+                        <br>
+                        <form action='/posts/<%= messages_in_index[msg]._id%>' method='post'>
+                            <p>Name:</p><input type='text' name='name'>
+                            <p>Comment:</p><textarea type="text" name="text" placeholder="Add comment"  rows="3" cols="30"></textarea><br><br>
+                            <input class="btn btn-default" type='submit' value='Post comment'>
+                        </form>
+                        <% if (session.comment_errors) { %>
+                            <% for (const key in session.comment_errors) { %>
+                                <h3><%= session.comment_errors[key].message %></h3>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+            </div>    
+        </div>
+
+    </body>
+</html>
